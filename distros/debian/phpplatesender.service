@@ -1,0 +1,20 @@
+# phpplatesender systemd unit file
+# This file is intended to work with debian distributions
+
+[Unit]
+Description=PHP based license plate notifications sender
+After=network.target memcached.service openalpr-daemon.service beanstalkd.service
+Requires=memcached.service openalpr-daemon.service beanstalkd.service
+Wants=
+
+[Service]
+User=www-data
+Type=forking
+ExecStart=/usr/bin/php /usr/share/phpplatesender/daemon.php start
+ExecReload=/usr/bin/php /usr/share/phpplatesender/daemon.php reload
+ExecStop=/usr/bin/php /usr/share/phpplatesender/daemon.php stop
+PIDFile=/var/run/phpplatesender/phpplatesender.pid
+TimeoutSec=2
+
+[Install]
+WantedBy=multi-user.target

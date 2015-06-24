@@ -1,0 +1,123 @@
+<?php
+
+/* *****************************************************************************
+ * Copyright (C) 2015 Emmanuel Papin <manupap01@gmail.com>
+ *
+ * Authors: Emmanuel Papin <manupap01@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+ * ****************************************************************************/
+
+
+// This configuration file is used to set user values
+// Commented lines show the default values
+
+
+// GENERAL SECTION
+
+// Language for log messages and emails
+// Currently only en_gb and fr_fr are supported
+//$language = "en_gb";
+
+// Log file
+//$log_file = "@LOG_DIR@/phpplatesender.log";
+
+// IP address or hostname of memcached server
+//$memcached_host = "127.0.0.1";
+
+// Memcached port for the connection
+//$memcached_port = 11211;
+
+// END OF GENERAL SECTION
+
+
+// WORKER SECTION
+
+// IP address or hostname of beanstalkd server
+//$beanstalkd_host = "127.0.0.1";
+
+// PID file
+//$pid_file = "@RUN_DIR@/phpplatesender.pid";
+
+// Path for PHP client binary
+//$php_bin_path = "@PHPCLI_BINARY_PATH@";
+
+// Minimum confidence level (between 0 and 100)
+// Plate numbers below this level are skipped
+//$min_conf_level = 80;
+
+// Time period in seconds without detection before reseting the plate list
+// when notifications are disabled
+//$ret_delay = 300;
+
+// END OF WORKER SECTION
+
+
+// SENDER SECTION
+
+// Enabling this option requires to properly configure other options
+// in this section
+//$enable_notifications = false;
+
+// Maximum number of plates to return in notifications
+//$max_plates = 10;
+
+// Use sendmail binary instead of smtp server to send emails
+// If set to false, SMTP options have to be defined correctly
+//$use_sendmail = true;
+
+// IP address or hostname of SMTP server
+//$smtp_hosts = "127.0.0.1";
+
+// Use SMTP authentication
+//$smtp_auth = false;
+
+// Username for SMTP authentication
+//$smtp_username = "";
+
+// Password for SMTP authentication
+//$smtp_password = "";
+
+// SMTP security protocol
+//$smtp_sec_proto = "tls";
+
+// SMTP port for the connection
+//$smtp_port = 587;
+
+// Email address of the sender
+//$sender_email = "openalpr@mydomain.com";
+
+// First name and last name of the sender
+//$sender_name = "OpenALPR";
+
+// Email address of the recipient
+//$recipient_email = "";
+
+// Name of the recipient
+//$recipient_name = "";
+
+// Maximum duration of detection
+// Notifications will be sent if the value is exceeded
+//$max_det_duration = 30;
+
+// Time period in seconds without detection before sending notifications
+//$no_det_duration = 10;
+
+// Directory where openalpr images are stored
+//$directory = "@IMAGE_DIR@";
+
+// END OF SENDER SECTION
+
+?>

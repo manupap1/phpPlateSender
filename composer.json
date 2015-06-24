@@ -1,0 +1,7 @@
+{
+    "name": "phpplatesender/phpplatesender",
+    "description": "PHP based license plate notifications sender",
+    "license": "GPL",
+    "require": {
+    }
+}

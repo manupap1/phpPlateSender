@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with autoreconf,phpcomposer,systemd
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	  --with-webuser=www-data --with-webgroup=www-data \
+	  --with-phpmailerdir=/usr/share/php/libphp-phpmailer
+
+override_dh_installdocs:
+	dh_installdocs
+	# A hack to move content of all LICENSE files to copyright file
+	# The wildcard is used to catch also LICENCE files ;-)
+	cd debian/phpplatesender && find . -name "LICEN*E" \
+	  -exec echo "" \; -exec echo "" \; \
+	  -exec echo "Content of file '{}' moved here:" \; \
+	  -exec echo "" \
+	    >> usr/share/doc/phpplatesender/copyright \; \
+	  -exec cat "{}" \
+	    >> usr/share/doc/phpplatesender/copyright \; \
+	  -exec rm -f "{}" \;

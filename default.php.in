@@ -1,0 +1,203 @@
+<?php
+
+/* *****************************************************************************
+ * Copyright (C) 2015 Emmanuel Papin <manupap01@gmail.com>
+ *
+ * Authors: Emmanuel Papin <manupap01@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+ * ****************************************************************************/
+
+
+// This file define default values when parameters are not set in the
+// configuration file
+
+
+// GENERAL SECTION
+
+// Language for log messages and emails
+define("DEFAULT_LANGUAGE", "en_gb");
+if (!isset($language)) {
+    $language = DEFAULT_LANGUAGE;
+}
+
+// Log file
+define("DEFAULT_LOG_FILE", "@LOG_DIR@/phpplatesender.log");
+if (!isset($log_file)) {
+    $log_file = DEFAULT_LOG_FILE;
+}
+
+// Error log file
+define("DEFAULT_ERROR_LOG_FILE", "@LOG_DIR@/error.log");
+if (!isset($error_log_file)) {
+    $error_log_file = DEFAULT_ERROR_LOG_FILE;
+}
+
+// IP address or hostname of memcached server
+define("DEFAULT_MEMCACHED_HOST", "127.0.0.1");
+if (!isset($memcached_host)) {
+    $memcached_host = DEFAULT_MEMCACHED_HOST;
+}
+
+// Memcached port for the connection
+define("DEFAULT_MEMCACHED_PORT", 11211);
+if (!isset($memcached_port)) {
+    $memcached_port = DEFAULT_MEMCACHED_PORT;
+}
+
+// END OF GENERAL SECTION
+
+
+// WORKER SECTION
+
+// Directory for the pheanstalk library
+if (empty("@PHEANSTALK_EXT_DIR@")) {
+    define("__PHEANSTALK_ROOT__", dirname(__FILE__) . "/lib/pheanstalk");
+} else {
+    define("__PHEANSTALK_ROOT__", "@PHEANSTALK_EXT_DIR@");
+}
+
+// IP address or hostname of beanstalkd server
+define("DEFAULT_BEANSTALKD_HOST", "127.0.0.1");
+if (!isset($beanstalkd_host)) {
+    $beanstalkd_host = DEFAULT_BEANSTALKD_HOST;
+}
+
+// PID file
+define("DEFAULT_PID_FILE", "@RUN_DIR@/phpplatesender.pid");
+if (!isset($pid_file)) {
+    $pid_file = DEFAULT_PID_FILE;
+}
+
+// Path for PHP client binary
+define("DEFAULT_PHP_BIN_PATH", "@PHPCLI_BINARY_PATH@");
+if (!isset($php_bin_path)) {
+    $php_bin_path = DEFAULT_PHP_BIN_PATH;
+}
+
+// Minimum confidence level
+define("DEFAULT_MIN_CONF_LEVEL", 80);
+if (!isset($min_conf_level)) {
+    $min_conf_level = DEFAULT_MIN_CONF_LEVEL;
+}
+
+// Time period in seconds without detection before reseting the plate list
+// when notifications are disabled
+define("DEFAULT_RET_DELAY", 300);
+if (!isset($ret_delay)) {
+    $ret_delay = DEFAULT_RET_DELAY;
+}
+
+// END OF WORKER SECTION
+
+
+// SENDER SECTION
+
+// Enabling this option requires to properly configure other options
+// in this section
+define("DEFAULT_ENABLE_NOTIFICATIONS", false);
+if (!isset($enable_notifications)) {
+    $enable_notifications = DEFAULT_ENABLE_NOTIFICATIONS;
+}
+
+// Directory for the phpmailer library
+if (empty("@PHPMAILER_EXT_DIR@")) {
+        define("__PHPMAILER_ROOT__", dirname(__FILE__) . "/lib/phpmailer");
+} else {
+        define("__PHPMAILER_ROOT__", "@PHPMAILER_EXT_DIR@");
+}
+
+// Maximum number of plates to return in notifications
+define("DEFAULT_MAX_PLATES", 10);
+if (!isset($max_plates)) {
+    $max_plates = DEFAULT_MAX_PLATES;
+}
+
+// Use sendmail binary instead of smtp server to send emails
+define("DEFAULT_USE_SENDMAIL", true);
+if (!isset($use_sendmail)) {
+    $use_sendmail = DEFAULT_USE_SENDMAIL;
+}
+
+// IP address or hostname of SMTP server
+define("DEFAULT_SMTP_HOSTS", "127.0.0.1");
+if (!isset($smtp_hosts)) {
+    $smtp_hosts = DEFAULT_SMTP_HOSTS;
+}
+
+// Use SMTP authentication
+define("DEFAULT_SMTP_AUTH", false);
+if (!isset($smtp_auth)) {
+    $smtp_auth = DEFAULT_SMTP_AUTH;
+}
+
+// Username for SMTP authentication
+define("DEFAULT_SMTP_USERNAME", "");
+if (!isset($smtp_username)) {
+   $smtp_username = DEFAULT_SMTP_USERNAME;
+}
+
+// Password for SMTP authentication
+define("DEFAULT_SMTP_PASSWORD", "");
+if (!isset($smtp_password)) {
+   $smtp_password = DEFAULT_SMTP_PASSWORD;
+}
+
+// SMTP security protocol
+define("DEFAULT_SMTP_SEC_PROTO", "tls");
+if (!isset($smtp_sec_proto)) {
+    $smtp_sec_proto = DEFAULT_SMTP_SEC_PROTO;
+}
+
+// SMTP port for the connection
+define("DEFAULT_SMTP_PORT", 587);
+if (!isset($smtp_port)) {
+    $smtp_port = DEFAULT_SMTP_PORT;
+}
+
+// Email address of the sender
+define("DEFAULT_SENDER_EMAIL", "openalpr@mydomain.com");
+if (!isset($sender_email)) {
+    $sender_email = DEFAULT_SENDER_EMAIL;
+}
+
+// First name and last name of the sender
+define("DEFAULT_SENDER_NAME", "OpenALPR");
+if (!isset($sender_name)) {
+    $sender_name = DEFAULT_SENDER_NAME;
+}
+
+// Maximum duration of detection
+// Notifications will be sent if the value is exceeded
+define("DEFAULT_MAX_DET_DURATION", 30);
+if (!isset($max_det_duration)) {
+    $max_det_duration = DEFAULT_MAX_DET_DURATION;
+}
+
+// Time period in seconds without detection before sending notifications
+define("DEFAULT_NO_DET_DURATION", 10);
+if (!isset($no_det_duration)) {
+    $no_det_duration = DEFAULT_NO_DET_DURATION;
+}
+
+// Directory where openalpr images are stored
+define("DEFAULT_DIRECTORY", "@IMAGE_DIR@");
+if (!isset($directory)) {
+    $directory = DEFAULT_DIRECTORY;
+}
+
+// END OF SENDER SECTION
+
+?>

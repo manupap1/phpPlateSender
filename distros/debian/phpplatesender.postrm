@@ -1,0 +1,20 @@
+#! /bin/sh
+# postrm maintainer script for zoneminder-core package
+
+set -e
+
+if [ "$1" = "purge" ]; then
+    if [ -f /etc/phpplatesender/config.php ]; then
+        rm /etc/phpplatesender/config.php
+    fi
+    if [ -f /etc/phpplatesender/config.php.dpkg-new ]; then
+        rm /etc/phpplatesender/config.php.dpkg-new
+    fi
+    if [ -f /var/log/phpplatesender/phpplatesender.log ]; then
+        rm /var/log/phpplatesender/phpplatesender.log
+    fi
+fi
+
+#DEBHELPER#
+
+exit 0
