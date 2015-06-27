@@ -45,6 +45,7 @@ Please set these options as requested by your environment. Main usefull options 
 - `--with-imagedir` - Path to directory where phpPlateSender will look for images of detected plates. If not set, the default value is `/var/lib/openalpr/plateimages`.
 - `--with-webuser` - User name for script execution. This must be the name of a valid user on your system. If not set, the default value is `apache`.
 - `--with-webgroup` - Group name for script execution. This must be the name of a valid group on your system. If not set, the default value is `apache`.
+- `--disable-sendmail` - Do not use sendmail binary to send emails. If set, configure will not look for sendmail binary. This option is usefull if you plan to use SMTP method to send emails.
 
 Example of configuration for installation in `/usr/share/phpplatesender` with local versions of phpmailer and pheanstalk (all other options leaved to default value):
 ```bash

@@ -25,7 +25,7 @@ AC_SUBST(PHPCLI_BINARY_PATH)
 PHPMAILER_EXT_DIR=
 PHPMAILER_FILE=
 AC_ARG_WITH(phpmailerdir,
-    [  --with-phpmailerdir=<path>    prefix of directory for the phpmailer
+    [  --with-phpmailerdir=<path>    Prefix of directory for the phpmailer
                                      library],
     [PHPMAILER_EXT_DIR=$with_phpmailerdir],
     AC_MSG_WARN([You can call configure with the --with-phpmailerdir option.
@@ -42,7 +42,7 @@ AC_SUBST(PHPMAILER_FILE)
 PHEANSTALK_EXT_DIR=
 PHEANSTALK_FILE=
 AC_ARG_WITH(pheanstalkdir,
-    [  --with-pheanstalkdir=<path>   prefix of directory for the pheanstalk
+    [  --with-pheanstalkdir=<path>   Prefix of directory for the pheanstalk
                                      library],
     [PHEANSTALK_EXT_DIR=$with_pheanstalkdir],
     AC_MSG_WARN([You can call configure with the --with-pheanstalkdir option.
@@ -58,7 +58,7 @@ AC_SUBST(PHEANSTALK_FILE)
 
 RUN_DIR=/var/run/phpplatesender
 AC_ARG_WITH(rundir,
-    [  --with-rundir=<path>          prefix of directory for the process file,
+    [  --with-rundir=<path>          Prefix of directory for the process file,
                                      default /var/run/phpplatesender],
     [RUN_DIR=$with_rundir],
     AC_MSG_WARN([You can call configure with the --with-rundir option.
@@ -69,7 +69,7 @@ AC_SUBST(RUN_DIR)
 
 LOG_DIR=/var/log/phpplatesender
 AC_ARG_WITH(logdir,
-    [  --with-logdir=<path>          prefix of directory for the log file,
+    [  --with-logdir=<path>          Prefix of directory for the log file,
                                      default /var/log/phpplatesender],
     [LOG_DIR=$with_logdir],
     AC_MSG_WARN([You can call configure with the --with-logdir option.
@@ -80,7 +80,7 @@ AC_SUBST(LOG_DIR)
 
 CONFIG_DIR=/etc/phpplatesender
 AC_ARG_WITH(confdir,
-    [  --with-confdir=<path>         prefix of directory for the config file,
+    [  --with-confdir=<path>         Prefix of directory for the config file,
                                      default /etc/phpplatesender],
     [CONFIG_DIR=$with_confdir],
     AC_MSG_WARN([You can call configure with the --with-confdir option.
@@ -91,7 +91,7 @@ AC_SUBST(CONFIG_DIR)
 
 IMAGE_DIR=/var/lib/openalpr/plateimages
 AC_ARG_WITH(imagedir,
-    [  --with-imagedir=<path>        prefix of alprd directory for images,
+    [  --with-imagedir=<path>        Prefix of alprd directory for images,
                                      default /var/lib/openalpr/plateimages],
     [IMAGE_DIR=$with_imagedir],
     AC_MSG_WARN([You can call configure with the --with-imagedir option.
@@ -102,7 +102,7 @@ AC_SUBST(IMAGE_DIR)
 
 WEB_USER=apache
 AC_ARG_WITH(webuser,
-    [  --with-webuser=<user>         name of web user, default apache],
+    [  --with-webuser=<user>         Name of web user, default apache],
     [WEB_USER=$with_webuser],
     AC_MSG_WARN([You can call configure with the --with-webuser option.
     This tells configure the user name to set for script execution.
@@ -116,7 +116,7 @@ AC_SUBST(WEB_USER)
 
 WEB_GROUP=apache
 AC_ARG_WITH(webgroup,
-    [  --with-webgroup=<group>       name of web group, default apache],
+    [  --with-webgroup=<group>       Name of web group, default apache],
     [WEB_GROUP=$with_webgroup],
     AC_MSG_WARN([You can call configure with the --with-webgroup option.
     This tells configure the group name to set for script execution.
@@ -127,6 +127,23 @@ if test "x$(id -g $WEB_GROUP)" == "x"; then
     AC_MSG_ERROR([Please adjust option '--with-webgroup' or create group])
 fi
 AC_SUBST(WEB_GROUP)
+
+USE_SENDMAIL=yes
+AC_ARG_ENABLE([sendmail],
+    [  --enable-sendmail=<yes|no>    Enable or disable the use of sendmail to
+                                     send notification emails, default enabled],
+    [USE_SENDMAIL=$enable_sendmail],
+    [AC_MSG_WARN([You can call configure with the --enable-sendmail=<yes|no>
+    or --disable-sendmail option.
+    This tells configure whether to look for sendmail binary.
+    e.g. --enable-sendmail=yes or --disable-sendmail])]
+)
+if test "x$USE_SENDMAIL" == "xyes"; then
+    AC_CHECK_PROG([HAVE_SENDMAIL],[sendmail],[yes],[no])
+    if test "x$HAVE_SENDMAIL" == "xno"; then
+        AC_MSG_ERROR([sendmail is missing, please install it])
+    fi
+fi
 
 DATA_DIR="${prefix}/share/phpplatesender"
 AC_SUBST(DATA_DIR)
