@@ -29,8 +29,8 @@ AC_ARG_WITH(phpmailerdir,
                                      library],
     [PHPMAILER_EXT_DIR=$with_phpmailerdir],
     AC_MSG_WARN([You can call configure with the --with-phpmailerdir option.
-    This tells configure to not install phpmailer but use the given directory
-    at runtime to load this library.
+    This tells configure to not install phpmailer but to use the given directory
+    at runtime to load the library phpmailer directory.
     e.g. --with-phpmailerdir=/usr/share/php/libphp-phpmailer])
 )
 if test "x$PHPMAILER_EXT_DIR" = "x"; then
@@ -105,10 +105,13 @@ AC_ARG_WITH(webuser,
     [  --with-webuser=<user>         name of web user, default apache],
     [WEB_USER=$with_webuser],
     AC_MSG_WARN([You can call configure with the --with-webuser option.
-    This tells configure what the user name of the web user is if it is not the
-    default of 'apache'.
-    e.g. --with-webuser=apache or --with-webuser=web])
+    This tells configure the user name to set for script execution.
+    Default value is 'apache'.
+    e.g. --with-webuser=apache])
 )
+if test "x$(id -u $WEB_USER)" == "x"; then
+    AC_MSG_ERROR([Please adjust option '--with-webuser' or create user])
+fi
 AC_SUBST(WEB_USER)
 
 WEB_GROUP=apache
@@ -116,12 +119,18 @@ AC_ARG_WITH(webgroup,
     [  --with-webgroup=<group>       name of web group, default apache],
     [WEB_GROUP=$with_webgroup],
     AC_MSG_WARN([You can call configure with the --with-webgroup option.
-    This tells configure what the group name of the web group is if it is not
-    the default of 'apache'.
-    e.g. --with-webgroup=apache or --with-webgroup=web])
+    This tells configure the group name to set for script execution.
+    Default value is 'apache'.
+    e.g. --with-webgroup=apache])
 )
+if test "x$(id -g $WEB_GROUP)" == "x"; then
+    AC_MSG_ERROR([Please adjust option '--with-webgroup' or create group])
+fi
 AC_SUBST(WEB_GROUP)
 
-AC_CONFIG_FILES([Makefile lang/Makefile config.php default.php])
+DATA_DIR="${prefix}/share/phpplatesender"
+AC_SUBST(DATA_DIR)
+
+AC_CONFIG_FILES([Makefile config.php default.php lang/Makefile misc/phpplatesender.init misc/phpplatesender.service misc/phpplatesender.tmpfile])
 
 AC_OUTPUT

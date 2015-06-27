@@ -27,15 +27,27 @@
 
 // GENERAL SECTION
 
+// User name for script execution
+define("DEFAULT_EXEC_USER", "@WEB_USER@");
+if (!isset($exec_user) || empty($exec_user)) {
+    $exec_user = DEFAULT_EXEC_USER;
+}
+
+// Group name for script execution
+define("DEFAULT_EXEC_GROUP", "@WEB_GROUP@");
+if (!isset($exec_group) || empty($exec_group)) {
+    $exec_group = DEFAULT_EXEC_GROUP;
+}
+
 // Language for log messages and emails
 define("DEFAULT_LANGUAGE", "en_gb");
-if (!isset($language)) {
+if (!isset($language) || empty($language)) {
     $language = DEFAULT_LANGUAGE;
 }
 
 // Log file
 define("DEFAULT_LOG_FILE", "@LOG_DIR@/phpplatesender.log");
-if (!isset($log_file)) {
+if (!isset($log_file) || empty($log_file)) {
     $log_file = DEFAULT_LOG_FILE;
 }
 
@@ -114,9 +126,9 @@ if (!isset($enable_notifications)) {
 
 // Directory for the phpmailer library
 if (empty("@PHPMAILER_EXT_DIR@")) {
-        define("__PHPMAILER_ROOT__", dirname(__FILE__) . "/lib/phpmailer");
+    define("__PHPMAILER_ROOT__", dirname(__FILE__) . "/lib/phpmailer");
 } else {
-        define("__PHPMAILER_ROOT__", "@PHPMAILER_EXT_DIR@");
+    define("__PHPMAILER_ROOT__", "@PHPMAILER_EXT_DIR@");
 }
 
 // Maximum number of plates to return in notifications

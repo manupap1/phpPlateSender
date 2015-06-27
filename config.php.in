@@ -27,11 +27,21 @@
 
 // GENERAL SECTION
 
+// User name for script execution
+// Set to default value '@WEB_USER@' if empty
+//$exec_user = "@WEB_USER@";
+
+// Grou name for script execution
+// Set to default value '@WEB_GROUP@' if empty
+//$exec_group = "@WEB_GROUP@";
+
 // Language for log messages and emails
-// Currently only en_gb and fr_fr are supported
+// Currently only 'en_gb' and 'fr_fr' are supported
+// Set to default value 'en_gb' if empty
 //$language = "en_gb";
 
 // Log file
+// Set to default value '@LOG_DIR@/phpplatesender.log' if empty
 //$log_file = "@LOG_DIR@/phpplatesender.log";
 
 // IP address or hostname of memcached server

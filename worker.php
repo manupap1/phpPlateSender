@@ -27,8 +27,8 @@ define('__ROOT__', dirname(__FILE__));
 // Load configuration and required libraries
 require_once(__ROOT__ . "/config.php");
 require_once(__ROOT__ . "/default.php");
-require_once(__ROOT__ . "/logger.php");
 require_once(__ROOT__ . "/utils.php");
+require_once(__ROOT__ . "/logger.php");
 require_once(__PHEANSTALK_ROOT__ . "/pheanstalk_init.php");
 
 // Some sanity checks

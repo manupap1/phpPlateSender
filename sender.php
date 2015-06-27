@@ -27,8 +27,8 @@ define('__ROOT__', dirname(__FILE__));
 // Load configuration and required libraries
 require_once(__ROOT__ . "/config.php");
 require_once(__ROOT__ . "/default.php");
-require_once(__ROOT__ . "/logger.php");
 require_once(__ROOT__ . "/utils.php");
+require_once(__ROOT__ . "/logger.php");
 require_once(__PHPMAILER_ROOT__ . "/class.phpmailer.php");
 
 // Some sanity checks
@@ -97,11 +97,6 @@ if (empty($recipient_email)) {
         translate("commaExit"));
     exit(1);
 }
-if (empty($recipient_name)) {
-    write_log("\$recipient_name " . translate("canNotBeAnEmptyString") .
-        translate("commaExit"));
-    exit(1);
-}
 if (!is_int($max_det_duration) || ($max_det_duration < 0)) {
     write_log("'$max_det_duration' " . translate("isNotAValidValueFor") .
         " \$max_det_duration" . translate("commaExit"));
@@ -158,7 +153,11 @@ if ($use_sendmail) {
     $mail->Port = $smtp_port;
 }
 $mail->setFrom($sender_email, $sender_name);
-$mail->addAddress($recipient_email, $recipient_name);
+if (empty($recipient_name)) {
+    $mail->addAddress($recipient_email);
+} else {
+    $mail->addAddress($recipient_email, $recipient_name);
+}
 $mail->Subject = translate("MailSubjectPlateDetected");
 
 // Set some default values

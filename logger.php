@@ -25,6 +25,20 @@
 require_once(__ROOT__ . "/config.php");
 require_once(__ROOT__ . "/default.php");
 
+// Some sanity checks
+$process_user = posix_getpwuid(posix_geteuid());
+if ($exec_user != $process_user['name']) {
+    echo translate("ScriptMustBeRunnedWithUser") .
+        " '" . $exec_user . "'" . translate("commaExit") . "\n";
+    exit(1);
+}
+$process_group = posix_getgrgid(posix_getegid());
+if ($exec_group != $process_group['name']) {
+    echo translate("ScriptMustBeRunnedWithGroup") .
+        " '" . $exec_group . "'" . translate("commaExit") . "\n";
+    exit(1);
+}
+
 // A function to log message in a file
 function write_log($message) {
 
