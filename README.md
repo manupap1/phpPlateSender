@@ -9,6 +9,7 @@ phpPlateSender requires:
 - CURL binary (usually /usr/bin/curl),
 - sendmail binary (usually /usr/sbin/sendmail) or access to a SMTP server (sendmail is the default method to send emails).
 ## Installation
+
 ### Get the files and enter phpPlateSender directory
 ```bash
 git clone https://github.com/manupap1/phpPlateSender.git
