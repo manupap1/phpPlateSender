@@ -3,11 +3,11 @@
 phpPlateSender is a free, open source set of scripts to use with openalpr-daemon (alprd). It sends notifications when plate numbers are detected. phpPlateSender runs in the background and wait for new entries in the 'alprd' beanstalkd queue.
 ## Requirements
 phpPlateSender requires:
-- A running instance of openalpr-daemon (and beanstalkd)
-- A running instance of memcached server
-- PHP client binary (usually /usr/bin/php)
-- CURL binary (usually /usr/bin/curl)
-- sendmail binary (usually /usr/sbin/sendmail) or access to a SMTP server (sendmail is the default method to send emails)
+- A running instance of openalpr-daemon (and beanstalkd),
+- A running instance of memcached server,
+- PHP client binary (usually /usr/bin/php),
+- CURL binary (usually /usr/bin/curl),
+- sendmail binary (usually /usr/sbin/sendmail) or access to a SMTP server (sendmail is the default method to send emails).
 ## Installation
 ### Get the files and enter phpPlateSender directory
 ```bash
@@ -17,40 +17,38 @@ cd phpPlateSender
 ### Install phpPlateSender with standard installation method
 This is not the preferred method.
 You are encouraged to use the package installation method if your distribution is supported.
+Generate files required for installation:
 ```bash
 ./bootstrap.sh
+```
+Display the list of configuration options:
+```bash
 ./configure --help
 ```
-This will display the available options to customize installation, main usefull options are:
-- `--prefix` - Prefix of directory where to install phpPlateSender. If not set, the default value is `/usr/local` (phpPlateSender will be installed under `/usr/local/share/phpplatesender`)
-- `--with-phpmailerdir` - Path to existing phpmailer library. If set, phpPlateSender will load this library at runtime. If not set, a local version will be installed (internet access required)
-- `--with-pheanstalkdir` - Path to existing pheanstalk library. If set, phpPlateSender will load this library at runtime. If not set, a local version will be installed (internet access required)
-- `--with-rundir` - Path to directory where phpPlateSender will write the process file. If not set, the default value is `/var/run/phpplatesender`
-- `--with-logdir` - Path to directory where phpPlateSender will write the log files. If not set, the default value is `/var/log/phpplatesender`
-- `--with-confdir` - Path to directory where phpPlateSender will load the configuration file. If not set, the default value is `/etc/phpplatesender`
-- `--with-imagedir` - Path to directory where phpPlateSender will look for images of detected plates. If not set, the default value is `/var/lib/openalpr/plateimages`
-- `--with-webuser` - User name for script execution. This must be the name of a valid user on your system. If not set, the default value is `apache`
-- `--with-webgroup` - Group name for script execution. This must be the name of a valid group on your system. If not set, the default value is `apache`
-Please set these options as requested by your environment.
+Please set these options as requested by your environment. Main usefull options are:
+- `--prefix` - Prefix of directory where to install phpPlateSender. If not set, the default value is `/usr/local` (phpPlateSender will be installed under `/usr/local/share/phpplatesender`).
+- `--with-phpmailerdir` - Path to existing phpmailer library. If set, phpPlateSender will load this library at runtime. If not set, a local version will be installed (internet access required).
+- `--with-pheanstalkdir` - Path to existing pheanstalk library. If set, phpPlateSender will load this library at runtime. If not set, a local version will be installed (internet access required).
+- `--with-rundir` - Path to directory where phpPlateSender will write the process file. If not set, the default value is `/var/run/phpplatesender`.
+- `--with-logdir` - Path to directory where phpPlateSender will write the log files. If not set, the default value is `/var/log/phpplatesender`.
+- `--with-confdir` - Path to directory where phpPlateSender will load the configuration file. If not set, the default value is `/etc/phpplatesender`.
+- `--with-imagedir` - Path to directory where phpPlateSender will look for images of detected plates. If not set, the default value is `/var/lib/openalpr/plateimages`.
+- `--with-webuser` - User name for script execution. This must be the name of a valid user on your system. If not set, the default value is `apache`.
+- `--with-webgroup` - Group name for script execution. This must be the name of a valid group on your system. If not set, the default value is `apache`.
+Example of configuration for installation in `/usr/share/phpplatesender` with local versions of phpmailer and pheanstalk (all other options leaved to default value):
 ```bash
 ./configure --prefix=/usr
 make
 ```
-This minimal command will configure phpPlateSender for installation in `/usr/share/phpplatesender` with local versions of phpmailer and pheanstalk. All other options are leaved to default value.
-Please set the options as requested by your environment.
-
-And with root privileges:
+Installation of phpPlateSender files (root privileges required):
 ```bash
 make install
 ```
-This will finally install phpPlateSender on your system.
-
-Further configuration steps are required before starting phplateSender.
+phpPlateSender is now installed on your system. However further configuration steps are required before starting it.
 The configuration file with default `--with-confdir` option is `/etc/phpplatesender/config.php`.
 Most of default values can be kept to default but email notification requires to configure at least the following options:
-- `$enable_notifications` must be switched to `true`
-- `$recipient_email` must be set to a valid email address
-
+- `$enable_notifications` must be switched to `true`,
+- `$recipient_email` must be set to a valid email address.
 Optionally, you can configure the options relatives to SMTP to send email throught a SMTP server instead of the default sendmail method.
 It is strongly recommended to use SMTP if the recipients have public email addresses.
 
