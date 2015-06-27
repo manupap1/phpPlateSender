@@ -24,8 +24,8 @@ cd phpPlateSender
 
 ### Install phpPlateSender with standard installation method
 
-This is not the preferred method.
-You are encouraged to use the package installation method if your distribution is supported.
+***This is not the preferred method.
+You are encouraged to use the package installation method if your distribution is supported.***
 
 Generate files required for installation:
 ```bash
