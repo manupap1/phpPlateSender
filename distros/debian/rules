@@ -5,7 +5,7 @@
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-	  --with-webuser=www-data --with-webgroup=www-data \
+	  --with-runuser=www-data --with-rungroup=www-data \
 	  --with-phpmailerdir=/usr/share/php/libphp-phpmailer
 
 override_dh_installdocs:

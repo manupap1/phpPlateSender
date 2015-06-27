@@ -21,22 +21,22 @@
  * ****************************************************************************/
 
 
-// This file define default values when parameters are not set in the
+// This file define default values when parameters are not set properly in the
 // configuration file
 
 
 // GENERAL SECTION
 
 // User name for script execution
-define("DEFAULT_EXEC_USER", "@WEB_USER@");
-if (!isset($exec_user) || empty($exec_user)) {
-    $exec_user = DEFAULT_EXEC_USER;
+define("DEFAULT_RUN_USER", "@RUN_USER@");
+if (!isset($run_user) || empty($run_user)) {
+    $run_user = DEFAULT_RUN_USER;
 }
 
 // Group name for script execution
-define("DEFAULT_EXEC_GROUP", "@WEB_GROUP@");
-if (!isset($exec_group) || empty($exec_group)) {
-    $exec_group = DEFAULT_EXEC_GROUP;
+define("DEFAULT_RUN_GROUP", "@RUN_GROUP@");
+if (!isset($run_group) || empty($run_group)) {
+    $run_group = DEFAULT_RUN_GROUP;
 }
 
 // Language for log messages and emails

@@ -27,15 +27,15 @@ require_once(__ROOT__ . "/default.php");
 
 // Some sanity checks
 $process_user = posix_getpwuid(posix_geteuid());
-if ($exec_user != $process_user['name']) {
-    echo translate("ScriptMustBeRunnedWithUser") .
-        " '" . $exec_user . "'" . translate("commaExit") . "\n";
+if ($run_user != $process_user['name']) {
+    echo translate("ScriptMustBeRanByUser") .
+        " '" . $run_user . "'" . translate("commaExit") . "\n";
     exit(1);
 }
 $process_group = posix_getgrgid(posix_getegid());
-if ($exec_group != $process_group['name']) {
-    echo translate("ScriptMustBeRunnedWithGroup") .
-        " '" . $exec_group . "'" . translate("commaExit") . "\n";
+if ($run_group != $process_group['name']) {
+    echo translate("ScriptMustBeRanByGroup") .
+        " '" . $run_group . "'" . translate("commaExit") . "\n";
     exit(1);
 }
 

@@ -12,8 +12,8 @@
 
 # Author: Emmanuel Papin <manupap01@gmail.com>
 
-USER="@WEB_USER@"
-GROUP="@WEB_GROUP@"
+USER="@RUN_USER@"
+GROUP="@RUN_GROUP@"
 NAME="phpplatesender"
 DESC="PHP based license plate notifications sender"
 SCRIPTNAME="/etc/init.d/$NAME"

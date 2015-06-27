@@ -28,12 +28,12 @@
 // GENERAL SECTION
 
 // User name for script execution
-// Set to default value '@WEB_USER@' if empty
-//$exec_user = "@WEB_USER@";
+// Set to default value '@RUN_USER@' if empty
+//$run_user = "@RUN_USER@";
 
 // Grou name for script execution
-// Set to default value '@WEB_GROUP@' if empty
-//$exec_group = "@WEB_GROUP@";
+// Set to default value '@RUN_GROUP@' if empty
+//$run_group = "@RUN_GROUP@";
 
 // Language for log messages and emails
 // Currently only 'en_gb' and 'fr_fr' are supported

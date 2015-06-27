@@ -100,33 +100,36 @@ AC_ARG_WITH(imagedir,
 )
 AC_SUBST(IMAGE_DIR)
 
-WEB_USER=apache
-AC_ARG_WITH(webuser,
-    [  --with-webuser=<user>         Name of web user, default apache],
-    [WEB_USER=$with_webuser],
-    AC_MSG_WARN([You can call configure with the --with-webuser option.
-    This tells configure the user name to set for script execution.
+RUN_USER=apache
+AC_ARG_WITH(runuser,
+    [  --with-runuser=<user>         Name of user that executes php scripts,
+                                     default apache],
+    [RUN_USER=$with_runuser],
+    AC_MSG_WARN([You can call configure with the --with-runuser option.
+    This tells configure the user name to set for php script execution.
     Default value is 'apache'.
-    e.g. --with-webuser=apache])
+    e.g. --with-runuser=apache])
 )
-if test "x$(id -u $WEB_USER)" == "x"; then
-    AC_MSG_ERROR([Please adjust option '--with-webuser' or create user])
+if test "x$(id -u $RUN_USER)" == "x"; then
+    AC_MSG_ERROR([Please adjust option '--with-runuser' or create user])
 fi
-AC_SUBST(WEB_USER)
+AC_SUBST(RUN_USER)
 
-WEB_GROUP=apache
-AC_ARG_WITH(webgroup,
-    [  --with-webgroup=<group>       Name of web group, default apache],
-    [WEB_GROUP=$with_webgroup],
-    AC_MSG_WARN([You can call configure with the --with-webgroup option.
+RUN_GROUP=apache
+AC_ARG_WITH(rungroup,
+    [  --with-rungroup=<group>       Name of the group to which the user
+                                     that executes php scripts belongs,
+                                     default apache],
+    [RUN_GROUP=$with_rungroup],
+    AC_MSG_WARN([You can call configure with the --with-rungroup option.
     This tells configure the group name to set for script execution.
     Default value is 'apache'.
-    e.g. --with-webgroup=apache])
+    e.g. --with-rungroup=apache])
 )
-if test "x$(id -g $WEB_GROUP)" == "x"; then
-    AC_MSG_ERROR([Please adjust option '--with-webgroup' or create group])
+if test "x$(id -g $RUN_GROUP)" == "x"; then
+    AC_MSG_ERROR([Please adjust option '--with-rungroup' or create group])
 fi
-AC_SUBST(WEB_GROUP)
+AC_SUBST(RUN_GROUP)
 
 USE_SENDMAIL=yes
 AC_ARG_ENABLE([sendmail],

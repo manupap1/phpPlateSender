@@ -1,7 +1,7 @@
 AUTOMAKE_OPTIONS = foreign
 
-webuser = @WEB_USER@
-webgroup = @WEB_GROUP@
+runuser = @RUN_USER@
+rungroup = @RUN_GROUP@
 webdir = @datarootdir@/phpplatesender
 configdir = @CONFIG_DIR@
 
@@ -45,9 +45,9 @@ clean-local:
 	( rm -rf config.php default.php composer.lock composer.phar vendor )
 
 install-data-hook:
-	( cd $(DESTDIR)$(configdir); chown $(webuser):$(webgroup) $(config_DATA); chmod 600 $(config_DATA); ln -sf $(configdir)/$(config_DATA) $(DESTDIR)$(pkgdatadir)/$(config_DATA) )
-	( if ! test -e $(DESTDIR)$(RUN_DIR); then mkdir -p $(DESTDIR)$(RUN_DIR); fi; if test "$(DESTDIR)$(RUN_DIR)" != "/var/run"; then chown $(webuser):$(webgroup) $(DESTDIR)$(RUN_DIR); chmod u+w $(DESTDIR)$(RUN_DIR); fi )
-	( if ! test -e $(DESTDIR)$(LOG_DIR); then mkdir -p $(DESTDIR)$(LOG_DIR); fi; if test "$(DESTDIR)$(LOG_DIR)" != "/var/log"; then chown $(webuser):$(webgroup) $(DESTDIR)$(LOG_DIR); chmod u+w $(DESTDIR)$(LOG_DIR); fi )
+	( cd $(DESTDIR)$(configdir); chown $(runuser):$(rungroup) $(config_DATA); chmod 600 $(config_DATA); ln -sf $(configdir)/$(config_DATA) $(DESTDIR)$(pkgdatadir)/$(config_DATA) )
+	( if ! test -e $(DESTDIR)$(RUN_DIR); then mkdir -p $(DESTDIR)$(RUN_DIR); fi; if test "$(DESTDIR)$(RUN_DIR)" != "/var/run"; then chown $(runuser):$(rungroup) $(DESTDIR)$(RUN_DIR); chmod u+w $(DESTDIR)$(RUN_DIR); fi )
+	( if ! test -e $(DESTDIR)$(LOG_DIR); then mkdir -p $(DESTDIR)$(LOG_DIR); fi; if test "$(DESTDIR)$(LOG_DIR)" != "/var/log"; then chown $(runuser):$(rungroup) $(DESTDIR)$(LOG_DIR); chmod u+w $(DESTDIR)$(LOG_DIR); fi )
 	( if test "x$(PHEANSTALK_FILE)" != "x"; then if ! test -e $(DESTDIR)$(pkgdatadir)/lib; then mkdir -p $(DESTDIR)$(pkgdatadir)/lib; fi; cp -R vendor/pda/pheanstalk $(DESTDIR)$(pkgdatadir)/lib; fi )
 	( if test "x$(PHPMAILER_FILE)" != "x"; then if ! test -e $(DESTDIR)$(pkgdatadir)/lib; then mkdir -p $(DESTDIR)$(pkgdatadir)/lib; fi; cp -R vendor/phpmailer/phpmailer $(DESTDIR)$(pkgdatadir)/lib; fi )
 

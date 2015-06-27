@@ -40,11 +40,11 @@ Please set these options as requested by your environment. Main usefull options 
 - `--with-phpmailerdir` - Path to existing phpmailer library. If set, phpPlateSender will load this library at runtime. If not set, a local version will be installed (internet access required).
 - `--with-pheanstalkdir` - Path to existing pheanstalk library. If set, phpPlateSender will load this library at runtime. If not set, a local version will be installed (internet access required).
 - `--with-rundir` - Path to directory where phpPlateSender will write the process file. If not set, the default value is `/var/run/phpplatesender`.
+- `--with-runuser` - User name for script execution. This must be the name of a valid user on your system. If not set, the default value is `apache`.
+- `--with-rungroup` - Group name for script execution. This must be the name of a valid group on your system. If not set, the default value is `apache`.
 - `--with-logdir` - Path to directory where phpPlateSender will write the log files. If not set, the default value is `/var/log/phpplatesender`.
 - `--with-confdir` - Path to directory where phpPlateSender will load the configuration file. If not set, the default value is `/etc/phpplatesender`.
 - `--with-imagedir` - Path to directory where phpPlateSender will look for images of detected plates. If not set, the default value is `/var/lib/openalpr/plateimages`.
-- `--with-webuser` - User name for script execution. This must be the name of a valid user on your system. If not set, the default value is `apache`.
-- `--with-webgroup` - Group name for script execution. This must be the name of a valid group on your system. If not set, the default value is `apache`.
 - `--disable-sendmail` - Do not use sendmail binary to send emails. If set, configure will not look for sendmail binary. This option is usefull if you plan to use SMTP method to send emails.
 
 Example of configuration for installation in `/usr/share/phpplatesender` with local versions of phpmailer and pheanstalk (all other options leaved to default value):
