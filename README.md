@@ -8,8 +8,8 @@ phpPlateSender requires:
 - PHP client binary (usually /usr/bin/php),
 - CURL binary (usually /usr/bin/curl),
 - sendmail binary (usually /usr/sbin/sendmail) or access to a SMTP server (sendmail is the default method to send emails).
-## Installation
 
+## Installation
 ### Get the files and enter phpPlateSender directory
 ```bash
 git clone https://github.com/manupap1/phpPlateSender.git
@@ -18,6 +18,7 @@ cd phpPlateSender
 ### Install phpPlateSender with standard installation method
 This is not the preferred method.
 You are encouraged to use the package installation method if your distribution is supported.
+
 Generate files required for installation:
 ```bash
 ./bootstrap.sh
@@ -36,6 +37,7 @@ Please set these options as requested by your environment. Main usefull options 
 - `--with-imagedir` - Path to directory where phpPlateSender will look for images of detected plates. If not set, the default value is `/var/lib/openalpr/plateimages`.
 - `--with-webuser` - User name for script execution. This must be the name of a valid user on your system. If not set, the default value is `apache`.
 - `--with-webgroup` - Group name for script execution. This must be the name of a valid group on your system. If not set, the default value is `apache`.
+
 Example of configuration for installation in `/usr/share/phpplatesender` with local versions of phpmailer and pheanstalk (all other options leaved to default value):
 ```bash
 ./configure --prefix=/usr
@@ -50,6 +52,7 @@ The configuration file with default `--with-confdir` option is `/etc/phpplatesen
 Most of default values can be kept to default but email notification requires to configure at least the following options:
 - `$enable_notifications` must be switched to `true`,
 - `$recipient_email` must be set to a valid email address.
+
 Optionally, you can configure the options relatives to SMTP to send email throught a SMTP server instead of the default sendmail method.
 It is strongly recommended to use SMTP if the recipients have public email addresses.
 
@@ -64,10 +67,11 @@ If you want to run phpPlateSender on the background, you can use the following c
 ```bash
 /usr/bin/php /usr/share/phpplatesender/daemon.php start
 ```
-If you want that phpPlatePSender automatically starts on the background after reboots, take a look at the misc folder, there is some helper files for SysVinit and Systemd init systems (please read the corresponding man pages for information about how to implement a new entry for phpPlateSender).
+If you want that phpPlatePSender automatically starts on the background after reboots, take a look at the `misc` folder, there is some helper files for SysVinit and Systemd init systems (please read the corresponding man pages for information about how to implement these files).
 ### Install phpPlateSender with package installation method
 #### Debian / Ubuntu distribution
 Prerequisite: The package openalpr-daemon must be installed. Please read openalpr documentation on https://github.com/openalpr/openalpr.
+
 Construction of phpPlateSender package:
 ```bash
 cp -R distros/debian ./
