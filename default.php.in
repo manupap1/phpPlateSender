@@ -210,6 +210,12 @@ if (!isset($no_det_duration)) {
     $no_det_duration = DEFAULT_NO_DET_DURATION;
 }
 
+// Attach image of detected plate to email
+define("DEFAULT_ATTACH_IMAGE", true);
+if (!isset($attach_image)) {
+    $attach_image = DEFAULT_ATTACH_IMAGE;
+}
+
 // END OF SENDER SECTION
 
 ?>

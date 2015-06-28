@@ -129,6 +129,11 @@
 // Time period in seconds without detection before sending notifications
 //$no_det_duration = 10;
 
+// Attach image of detected plate to email
+// If set to true, this option requires to set option 'store_plates' to 1
+// in the alprd configuration file
+//$attach_image = true;
+
 // END OF SENDER SECTION
 
 ?>

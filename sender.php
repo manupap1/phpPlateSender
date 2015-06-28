@@ -108,9 +108,9 @@ if (!is_int($no_det_duration) || ($no_det_duration < 0)) {
         " \$no_det_duration" . translate("commaExit"));
     exit(1);
 }
-if (!is_dir($directory)) {
-    write_log("'$directory' " . translate("isNotADirectory") .
-        translate("commaExit"));
+if (!is_bool($attach_image)) {
+    write_log("'$attach_image' " . translate("isNotAValidValueFor") .
+        " \$attach_image" . translate("commaExit"));
     exit(1);
 }
 if (empty($memcached_host)) {
