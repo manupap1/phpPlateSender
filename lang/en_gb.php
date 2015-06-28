@@ -28,6 +28,7 @@ $SLANG = array(
     "canNotBeAnEmptyString"         => "can not be an empty string",
     "commaExit"                     => ", exit!",
     "DetectedPlate"                 => "Detected Plate:",
+    "ImageStorageDisabledInAlprd"   => "Image storage is disabled in alprd, emails will not contain attachment",
     "InstanceAlreadyExists"         => "Instance already exists",
     "InstanceIsRunning"             => "Instance is running",
     "isNotADirectory"               => "is not a directory",

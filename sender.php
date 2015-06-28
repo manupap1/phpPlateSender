@@ -125,6 +125,16 @@ if (!is_int($memcached_port) || ($memcached_port < 1)
     exit(1);
 }
 
+// Get openalpr-daemon (alprd) configuration
+$alprd_config = parse_ini_file($alprd_config_file);
+
+// Log a message if user activated image attachment but alprd will not export
+// images
+if ($attach_image && !$alprd_config["store_plates"]) {
+    write_log(translate("ImageStorageDisabledInAlprd"));
+    $attach_image = false;
+}
+
 // Share variables between 'threads' with memcached
 $memcache = new Memcached;
 $memcache->addServer($memcached_host, $memcached_port);
@@ -254,11 +264,14 @@ while(true) {
         }
         $mail->Body .= "- " . $plate['num'] . " (" . $plate['conf'] . ")\n";
     }
-    $mail->Body .= "\n" . translate("PictureIsAttached") . "\n";
 
-    // Add picture with the highest confidence to the email
-    $mail->clearAttachments();
-    $mail->addAttachment($directory . "/" . $first_plate['uuid'] . ".jpg");
+    // Add image with the highest confidence to the email if required
+    if ($attach_image) {
+        $mail->Body .= "\n" . translate("PictureIsAttached") . "\n";
+        $mail->clearAttachments();
+        $mail->addAttachment($alprd_config["store_plates_location"] . "/" .
+            $first_plate['uuid'] . ".jpg");
+    }
 
     // Send the email
     write_log(translate("SendEmailWithPlates"));

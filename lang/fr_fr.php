@@ -28,6 +28,7 @@ $SLANG = array(
     "canNotBeAnEmptyString"         => "ne peut pas être une chaîne vide",
     "commaExit"                     => ", sortie !",
     "DetectedPlate"                 => "Plaque détectée :",
+    "ImageStorageDisabledInAlprd"   => "Le stockage d'images est désactivé dans alprd, les emails ne contiendront pas de pièce jointe",
     "InstanceAlreadyExists"         => "L'instance existe déjà",
     "InstanceIsRunning"             => "L'instance est en cours d'exécution",
     "isNotADirectory"               => "n'est pas un répertoire",
