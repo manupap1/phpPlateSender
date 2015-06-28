@@ -49,30 +49,10 @@ if (!is_bool($use_sendmail)) {
     write_log("'$use_sendmail' " . translate("isNotAValidValueFor") .
         " \$use_sendmail" . translate("commaExit"));
     exit(1);
-}
-if (!$use_sendmail) {
+} elseif (!$use_sendmail) {
+    require_once(__PHPMAILER_ROOT__ . "/class.smtp.php");
     if (empty($smtp_hosts)) {
         write_log("\$smtp_hosts " . translate("canNotBeAnEmptyString") .
-            translate("commaExit"));
-        exit(1);
-    }
-    if (!is_bool($smtp_auth)) {
-        write_log("'$smtp_auth' " . translate("isNotAValidValueFor") .
-            " \$smtp_auth" . translate("commaExit"));
-        exit(1);
-    }
-    if (empty($smtp_username)) {
-        write_log("\$smtp_username " . translate("canNotBeAnEmptyString") .
-            translate("commaExit"));
-        exit(1);
-    }
-    if (empty($smtp_password)) {
-        write_log("\$smtp_password " . translate("canNotBeAnEmptyString") .
-            translate("commaExit"));
-        exit(1);
-    }
-    if (empty($smtp_sec_proto)) {
-        write_log("\$smtp_sec_proto " . translate("canNotBeAnEmptyString") .
             translate("commaExit"));
         exit(1);
     }
@@ -80,6 +60,27 @@ if (!$use_sendmail) {
         write_log("'$smtp_port' " . translate("isNotAValidValueFor") .
             " \$smtp_port" . translate("commaExit"));
         exit(1);
+    }
+    if (!is_bool($smtp_auth)) {
+        write_log("'$smtp_auth' " . translate("isNotAValidValueFor") .
+            " \$smtp_auth" . translate("commaExit"));
+        exit(1);
+    } elseif ($smtp_auth) {
+        if (empty($smtp_username)) {
+            write_log("\$smtp_username " . translate("canNotBeAnEmptyString") .
+                translate("commaExit"));
+            exit(1);
+        }
+        if (empty($smtp_password)) {
+            write_log("\$smtp_password " . translate("canNotBeAnEmptyString") .
+                translate("commaExit"));
+            exit(1);
+        }
+        if (empty($smtp_sec_proto)) {
+            write_log("\$smtp_sec_proto " . translate("canNotBeAnEmptyString") .
+                translate("commaExit"));
+            exit(1);
+        }
     }
 }
 if (empty($sender_email)) {
