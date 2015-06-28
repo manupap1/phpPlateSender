@@ -84,6 +84,8 @@ Don't forget to configure openalpr-daemmon and restart it (the configuration fil
 - `stream` set to the url of the MJPEG stream on your camera,
 - `store_plates` set to 1.
 
+The following instructions assume that your current shell directory is phpPlateSender.
+
 Construction of phpPlateSender package:
 ```bash
 cp -R distros/debian ./
