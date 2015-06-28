@@ -181,7 +181,7 @@ function signal_handler($signal) {
                 $memcache->delete("phpplatesender_serial");
             }
             // Remove the PID file and exit
-            unlink($pid_file);
+            @unlink($pid_file);
             exit(0);
             break;
         default:
