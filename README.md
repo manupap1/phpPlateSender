@@ -56,7 +56,7 @@ Installation of phpPlateSender files (root privileges required):
 ```bash
 make install
 ```
-phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration).
+phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration)).
 
 In order to manually start phpPlateSender the effective shell user must be the username given for `--with-webuser`.
 You can also use the `sudo` command if your distribution supports it (please read the sudo man page for information about how to use this command).
@@ -94,7 +94,7 @@ cd ..
 sudo apt-get install memcached php5-cli curl
 sudo dpkg -i phpplatesender_*_all.deb
 ```
-phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration).
+phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration)).
 When the configuration is finished, phpPlateSender must be restarted.
 
 Restart command for SysVinit based distributions:
@@ -123,7 +123,7 @@ Optionally, you can configure the options relatives to SMTP in order to send ema
 - `$use_sendmail` switched to false,
 - `$smtp_hosts` set to the address of the SMTP server,
 - `$smtp_port` set to the port of the SMTP server (required option if the port of the SMTP server is not standard),
-- `$smtp_auth`, `$smtp_username`, `$smtp_password`, `$smtp_sec_proto` set if required by the SMTP server
+- `$smtp_auth`, `$smtp_username`, `$smtp_password`, `$smtp_sec_proto` set if required by the SMTP server.
 
 For the meaning of other options, please read the comments in the configuration file.
 
@@ -134,7 +134,7 @@ After each modification of options in the configuration file, phpPlateSender mus
 If emails are not received or are classified among the spam they are several possible reasons (which can be cumulative):
 - The configuration of your sendmail system or your local SMTP server is broken (please read the documentation of used application for instructions about how to test email sending).
 - You are using a local SMTP server which is not considered legitimate by the mailing system of the recipient. In this case you have two options:
- - Configure a directive on your local SMTP server to send emails to a legitimate relay host. Many ISPs provide an address to a SMTP server which can be used for this purpose (if you are using postfix, please follow the documentation for instructions about how to implement the `relayhost` directive).
+ - Configure a directive on your local SMTP server to send emails to a legitimate relay host. Many ISPs provide an address to a SMTP server which can be used for this purpose. If you are using postfix, please follow the postfix documentation for instructions about how to implement the `relayhost` directive.
  - Configure phpplatesender to send emails directly to a legitimate SMTP server. Please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to configure a SMTP server in phpPlateSender.
 - The email address of the sender is considered suspicious by the mailing system of the recipient. This address does not have to be a valid address associated to a mailbox, however the domain name may be verified somewhere in the transmission chain. To check this possibility, you can try to set a valid address. Please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to change the `$sender_email` option.
 - The email address of the recipient does not exists (but I think you have checked it first!).
