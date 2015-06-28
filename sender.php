@@ -127,6 +127,10 @@ if (!is_int($memcached_port) || ($memcached_port < 1)
 
 // Get openalpr-daemon (alprd) configuration
 $alprd_config = parse_ini_file($alprd_config_file);
+if ($alprd_config === false) {
+    write_log(translate("CanNotReadAlprdConfigFile") . translate("commaExit"));
+    exit(1);
+}
 
 // Log a message if user activated image attachment but alprd will not export
 // images

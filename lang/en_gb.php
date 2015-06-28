@@ -26,6 +26,7 @@ $SLANG = array(
     "DelayExceededResetPlateList"   => "Delay exceeded, reset plate list",
     "CandidatesConfidence"          => "Candidates (confidence):",
     "canNotBeAnEmptyString"         => "can not be an empty string",
+    "CanNotReadAlprdConfigFile"     => "Can not read alprd config file",
     "commaExit"                     => ", exit!",
     "DetectedPlate"                 => "Detected Plate:",
     "ImageStorageDisabledInAlprd"   => "Image storage is disabled in alprd, emails will not contain attachment",
