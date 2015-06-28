@@ -50,6 +50,10 @@
 // Memcached port for the connection
 //$memcached_port = 11211;
 
+// alprd configuration file
+// Set to default value '@ALPRD_CONFIG_FILE@' if empty
+//$alprd_config_file = "@ALPRD_CONFIG_FILE@";
+
 // END OF GENERAL SECTION
 
 
@@ -107,7 +111,7 @@
 //$smtp_port = 587;
 
 // Email address of the sender
-//$sender_email = "openalpr@mydomain.com";
+//$sender_email = "openalpr@@FQDN@";
 
 // First name and last name of the sender
 //$sender_name = "OpenALPR";
@@ -124,9 +128,6 @@
 
 // Time period in seconds without detection before sending notifications
 //$no_det_duration = 10;
-
-// Directory where openalpr images are stored
-//$directory = "@IMAGE_DIR@";
 
 // END OF SENDER SECTION
 

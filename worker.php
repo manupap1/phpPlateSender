@@ -65,6 +65,10 @@ if (!is_int($memcached_port) || ($memcached_port < 1)
     exit(1);
 }
 
+// Get openalpr-daemon (alprd) configuration
+$alprd_config = parse_ini_file($alprd_config_file);
+var_dump($alprd_config);
+
 // Share variables between 'threads' with memcached
 $memcache = new Memcached;
 $memcache->addServer($memcached_host, $memcached_port);

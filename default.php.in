@@ -69,6 +69,12 @@ if (!isset($memcached_port)) {
     $memcached_port = DEFAULT_MEMCACHED_PORT;
 }
 
+// alprd configuration file
+define("DEFAULT_ALPRD_CONFIG_FILE", "@ALPRD_CONFIG_FILE@");
+if (!isset($alprd_config_file) || empty($alprd_config_file)) {
+    $alprd_config_file = DEFAULT_ALPRD_CONFIG_FILE;
+}
+
 // END OF GENERAL SECTION
 
 
@@ -180,7 +186,7 @@ if (!isset($smtp_port)) {
 }
 
 // Email address of the sender
-define("DEFAULT_SENDER_EMAIL", "openalpr@mydomain.com");
+define("DEFAULT_SENDER_EMAIL", "openalpr@@FQDN@");
 if (!isset($sender_email)) {
     $sender_email = DEFAULT_SENDER_EMAIL;
 }
@@ -202,12 +208,6 @@ if (!isset($max_det_duration)) {
 define("DEFAULT_NO_DET_DURATION", 10);
 if (!isset($no_det_duration)) {
     $no_det_duration = DEFAULT_NO_DET_DURATION;
-}
-
-// Directory where openalpr images are stored
-define("DEFAULT_DIRECTORY", "@IMAGE_DIR@");
-if (!isset($directory)) {
-    $directory = DEFAULT_DIRECTORY;
 }
 
 // END OF SENDER SECTION

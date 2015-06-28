@@ -44,7 +44,7 @@ Please set these options as requested by your environment. Main usefull options 
 - `--with-rungroup` - Group name for script execution. This must be the name of a valid group on your system. If not set, the default value is `apache`.
 - `--with-logdir` - Path to directory where phpPlateSender will write the log files. If not set, the default value is `/var/log/phpplatesender`.
 - `--with-confdir` - Path to directory where phpPlateSender will load the configuration file. If not set, the default value is `/etc/phpplatesender`.
-- `--with-imagedir` - Path to directory where phpPlateSender will look for images of detected plates. If not set, the default value is `/var/lib/openalpr/plateimages`.
+- `--with-alprd-confdir` - Path to directory where phpPlateSender will look for the configuration file of openalpr-daemon (alprd). If not set, the default value is `/etc/openalpr`.
 - `--disable-sendmail` - Do not use sendmail binary to send emails. If set, configure will not look for sendmail binary. This option is usefull if you plan to the use direct SMTP access method to send emails.
 
 Example of configuration for installation in `/usr/share/phpplatesender` with local versions of phpmailer and pheanstalk (all other options leaved to default value):
@@ -132,7 +132,11 @@ For the meaning of other options, please read the comments in the configuration 
 
 After each modification of options in the configuration file, phpPlateSender must be restarted for the changes to take effect.
 
-#### Tips about email sending
+## Using
+
+To be completed.
+
+### Tips about email sending
 
 If emails are not received or are classified among the spam they are several possible reasons (which can be cumulative):
 - The configuration of your sendmail system or your local SMTP server is broken (please read the documentation of used application for instructions about how to test email sending).
@@ -141,7 +145,3 @@ If emails are not received or are classified among the spam they are several pos
  - Configure phpplatesender to send emails directly to a legitimate SMTP server. Please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to configure a SMTP server in phpPlateSender.
 - The email address of the sender is considered suspicious by the mailing system of the recipient. This address does not have to be a valid address associated to a mailbox, however the domain name may be verified somewhere in the transmission chain. To check this possibility, you can try to set a valid address. Please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to change the `$sender_email` option.
 - The email address of the recipient does not exists (but I think you have checked it first!).
-
-## Using
-
-To be completed.
