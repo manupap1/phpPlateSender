@@ -114,7 +114,7 @@ sudo systemctl force-reload phpplatesender
 Not yet supported.
 Your contribution is welcomed!
 
-### Configuration
+## Configuration
 
 The configuration file of phpPlateSender is `/etc/phpplatesender/config.php`.
 
