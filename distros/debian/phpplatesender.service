@@ -11,10 +11,8 @@ Wants=
 User=www-data
 Type=forking
 ExecStart=/usr/bin/php /usr/share/phpplatesender/daemon.php start
-ExecReload=/usr/bin/php /usr/share/phpplatesender/daemon.php reload
 ExecStop=/usr/bin/php /usr/share/phpplatesender/daemon.php stop
 PIDFile=/var/run/phpplatesender/phpplatesender.pid
-TimeoutSec=2
 
 [Install]
 WantedBy=multi-user.target

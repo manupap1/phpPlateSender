@@ -11,10 +11,8 @@ Wants=
 User=@RUN_USER@
 Type=forking
 ExecStart=/usr/bin/php @DATA_DIR@/daemon.php start
-ExecReload=/usr/bin/php @DATA_DIR@/daemon.php reload
 ExecStop=/usr/bin/php @DATA_DIR@/daemon.php stop
 PIDFile=@RUN_DIR@/phpplatesender.pid
-TimeoutSec=2
 
 [Install]
 WantedBy=multi-user.target

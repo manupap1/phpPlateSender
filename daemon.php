@@ -55,53 +55,70 @@ if ($pid !== false) {
     }
 }
 
+function do_start() {
+
+    global $running_instance;
+    global $php_bin_path;
+    global $error_log_file;
+
+    if ($running_instance) {
+        // Raise an error and exit if a running instance exists
+        echo translate("InstanceAlreadyExists") . translate("commaExit") .
+            "\n";
+        write_log(translate("InstanceAlreadyExists") .
+            translate("commaExit"));
+        return(1);
+    }
+
+    // Run the worker 'thread' in the background
+    exec($php_bin_path . " -f " . __ROOT__ . "/worker.php" .
+        " 2>> " . $error_log_file . " > /dev/null &");
+    return(0);
+}
+
+function do_stop() {
+
+    global $running_instance;
+    global $pid;
+
+    if ($running_instance) {
+        // Send kill command to stop the running instance
+        posix_kill($pid, SIGINT);
+    } else {
+        echo translate("NoRunningInstance") . translate("commaExit") . "\n";
+        write_log(translate("NoRunningInstance") . translate("commaExit"));
+        return(1);
+    }
+
+    // Timeout when stopping the running instance
+    $timeout = 60;
+    $timecount = 0;
+
+    // Wait until worker 'thread' is stopped
+    do {
+        $cmd_line = exec('ps -o cmd ' . $pid);
+        $timecount++;
+        if ($timecount > $timeout) {
+            echo translate("TimeoutWhenStopping") . "\n";
+            write_log(translate("TimeoutWhenStopping"));
+            return(1);
+        }
+        sleep(1);
+    } while (strpos($cmd_line, "phpplatesender/worker.php") !== false);
+
+    $running_instance = false;
+    return(0);
+}
+
 // Exit with error by default
 $exit_code = 1;
 
 switch($argv[1]) {
     case "stop":
-        if ($running_instance) {
-            // Send kill command to stop the running instance
-            posix_kill($pid, SIGINT);
-        } else {
-            echo translate("NoRunningInstance") . translate("commaExit") . "\n";
-            write_log(translate("NoRunningInstance") . translate("commaExit"));
-            exit(1);
-        }
-        // Timeout when stopping the running instance
-        $timeout = 60;
-        $timecount = 0;
-        // Wait until entries are deleted in the cached memory
-        do {
-            $cmd_line = exec('ps -o cmd ' . $pid);
-            $timecount++;
-            if ($timecount > $timeout) {
-                echo translate("TimeoutWhenStopping") . "\n";
-                write_log(translate("TimeoutWhenStopping"));
-                exit(1);
-            }
-            sleep(1);
-        } while (strpos($cmd_line, "phpplatesender/worker.php") !== false);
-        $running_instance = false;
-        $exit_code = 0;
-        break;
-    case "reload":
-        // FIXME: Not implemented
-        $exit_code = 0;
+        $exit_code = do_stop();
         break;
     case "start":
-        if ($running_instance) {
-            // Raise an error and exit if a running instance exists
-            echo translate("InstanceAlreadyExists") . translate("commaExit") .
-                "\n";
-            write_log(translate("InstanceAlreadyExists") .
-                translate("commaExit"));
-            exit(1);
-        }
-        // Run the worker 'thread' in the background
-        exec($php_bin_path . " -f " . __ROOT__ . "/worker.php" .
-            " 2>> " . $error_log_file . " > /dev/null &");
-        $exit_code = 0;
+        $exit_code = do_start();
         break;
     case "status":
         if ($running_instance) {
