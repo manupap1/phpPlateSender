@@ -11,7 +11,7 @@ phpPlateSender requires:
 - A running instance of memcached server,
 - PHP client binary (usually /usr/bin/php),
 - CURL binary (usually /usr/bin/curl),
-- sendmail binary (usually /usr/sbin/sendmail) or access to a SMTP server (sendmail is the default method to send emails).
+- A working environment to send emails with sendmail binary (usually /usr/sbin/sendmail) or direct access to a SMTP server (sendmail is the default method to send emails).
 
 ## Installation
 
@@ -45,7 +45,7 @@ Please set these options as requested by your environment. Main usefull options 
 - `--with-logdir` - Path to directory where phpPlateSender will write the log files. If not set, the default value is `/var/log/phpplatesender`.
 - `--with-confdir` - Path to directory where phpPlateSender will load the configuration file. If not set, the default value is `/etc/phpplatesender`.
 - `--with-imagedir` - Path to directory where phpPlateSender will look for images of detected plates. If not set, the default value is `/var/lib/openalpr/plateimages`.
-- `--disable-sendmail` - Do not use sendmail binary to send emails. If set, configure will not look for sendmail binary. This option is usefull if you plan to use SMTP method to send emails.
+- `--disable-sendmail` - Do not use sendmail binary to send emails. If set, configure will not look for sendmail binary. This option is usefull if you plan to the use direct SMTP access method to send emails.
 
 Example of configuration for installation in `/usr/share/phpplatesender` with local versions of phpmailer and pheanstalk (all other options leaved to default value):
 ```bash
@@ -56,14 +56,7 @@ Installation of phpPlateSender files (root privileges required):
 ```bash
 make install
 ```
-phpPlateSender is now installed on your system. However further configuration steps are required before starting it.
-The configuration file with default `--with-confdir` option is `/etc/phpplatesender/config.php`.
-Most of default values can be kept to default but email notification requires to configure at least the following options:
-- `$enable_notifications` must be switched to `true`,
-- `$recipient_email` must be set to a valid email address.
-
-Optionally, you can configure the options relatives to SMTP to send email throught a SMTP server instead of the default sendmail method.
-It is strongly recommended to use SMTP if the recipients have public email addresses.
+phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration).
 
 In order to manually start phpPlateSender the effective shell user must be the username given for `--with-webuser`.
 You can also use the `sudo` command if your distribution supports it (please read the sudo man page for information about how to use this command).
@@ -84,7 +77,11 @@ There is some helper files for SysVinit and Systemd init systems (please read th
 #### Debian / Ubuntu distribution
 
 Prerequisite:
-The package openalpr-daemon must be installed. Please read openalpr documentation on https://github.com/openalpr/openalpr.
+The package openalpr-daemon must be installed. Please read the documentation about how to install the packages on https://github.com/openalpr/openalpr.
+Don't forget to configure openalpr-daemmon and restart it (the configuration file is `/etc/openalpr/alprd.conf`). The following options must be changed or verified:
+- `country` set according your location,
+- `stream` set to the url of the MJPEG stream on your camera,
+- `store_plates` set to 1.
 
 Construction of phpPlateSender package:
 ```bash
@@ -97,11 +94,50 @@ cd ..
 sudo apt-get install memcached php5-cli curl
 sudo dpkg -i phpplatesender_*_all.deb
 ```
+phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration).
+When the configuration is finished, phpPlateSender must be restarted.
+
+Restart command for SysVinit based distributions:
+```bash
+sudo service phpplatesender force-reload
+```
+Restart command for Systemd based distributions:
+```bash
+sudo systemctl force-reload phpplatesender
+```
 
 #### Other distributions
 
 Not yet supported.
 Your contribution is welcomed!
+
+### Configuration
+
+The configuration file of phpPlateSender is `/etc/phpplatesender/config.php`.
+
+Most of the default values can be kept to start a new instance of phpPlateSender but email notification requires to configure at least the following options:
+- `$enable_notifications` must be switched to `true`,
+- `$recipient_email` must be set to a valid email address.
+
+Optionally, you can configure the options relatives to SMTP in order to send email throught a SMTP server instead of the default sendmail method:
+- `$use_sendmail` switched to false,
+- `$smtp_hosts` set to the address of the SMTP server,
+- `$smtp_port` set to the port of the SMTP server (required option if the port of the SMTP server is not standard),
+- `$smtp_auth`, `$smtp_username`, `$smtp_password`, `$smtp_sec_proto` set if required by the SMTP server
+
+For the meaning of other options, please read the comments in the configuration file.
+
+After each modification of options in the configuration file, phpPlateSender must be restarted for the changes to take effect.
+
+#### Tips about email sending
+
+If emails are not received or are classified among the spam they are several possible reasons (which can be cumulative):
+- The configuration of your sendmail system or your local SMTP server is broken (please read the documentation of used application for instructions about how to test email sending).
+- You are using a local SMTP server which is not considered legitimate by the mailing system of the recipient. In this case you have two options:
+ - Configure a directive on your local SMTP server to send emails to a legitimate relay host. Many ISPs provide an address to a SMTP server which can be used for this purpose (if you are using postfix, please follow the documentation for instructions about how to implement the `relayhost` directive).
+ - Configure phpplatesender to send emails directly to a legitimate SMTP server. Please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to configure a SMTP server in phpPlateSender.
+- The email address of the sender is considered suspicious by the mailing system of the recipient. This address does not have to be a valid address associated to a mailbox, however the domain name may be verified somewhere in the transmission chain. To check this possibility, you can try to set a valid address. Please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to change the `$sender_email` option.
+- The email address of the recipient does not exists (but I think you have checked it first!).
 
 ## Using
 
