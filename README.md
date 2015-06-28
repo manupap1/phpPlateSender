@@ -103,11 +103,11 @@ When the configuration is finished, phpPlateSender must be restarted.
 
 Restart command for SysVinit based distributions:
 ```bash
-sudo service phpplatesender force-reload
+sudo service phpplatesender restart
 ```
 Restart command for Systemd based distributions:
 ```bash
-sudo systemctl force-reload phpplatesender
+sudo systemctl restart phpplatesender
 ```
 
 #### Other distributions
