@@ -56,7 +56,7 @@ Installation of phpPlateSender files (root privileges required):
 ```bash
 make install
 ```
-phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration)).
+phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please read [configuration section](https://github.com/manupap1/phpPlateSender#configuration)).
 
 In order to manually start phpPlateSender the effective shell user must be the username given for `--with-webuser`.
 You can also use the `sudo` command if your distribution supports it (please read the sudo man page for information about how to use this command).
@@ -97,7 +97,7 @@ cd ..
 sudo apt-get install memcached php5-cli curl
 sudo dpkg -i phpplatesender_*_all.deb
 ```
-phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration)).
+phpPlateSender is now installed on your system, however further configuration steps are required before starting it (please read [configuration section](https://github.com/manupap1/phpPlateSender#configuration)).
 When the configuration is finished, phpPlateSender must be restarted.
 
 Restart command for SysVinit based distributions:
@@ -141,7 +141,9 @@ To be completed.
 If emails are not received or are classified among the spam they are several possible reasons (which can be cumulative):
 - The configuration of your sendmail system or your local SMTP server is broken (please read the documentation of used application for instructions about how to test email sending).
 - You are using a local SMTP server which is not considered legitimate by the mailing system of the recipient. In this case you have two options:
- - Configure a directive on your local SMTP server to send emails to a legitimate relay host. Many ISPs provide an address to a SMTP server which can be used for this purpose. If you are using postfix, please follow the postfix documentation for instructions about how to implement the `relayhost` directive.
- - Configure phpplatesender to send emails directly to a legitimate SMTP server. Please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to configure a SMTP server in phpPlateSender.
-- The email address of the sender is considered suspicious by the mailing system of the recipient. This address does not have to be a valid address associated to a mailbox, however the domain name may be verified somewhere in the transmission chain. To check this possibility, you can try to set a valid address. Please see [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to change the `$sender_email` option.
+ - Configure a directive on your local SMTP server to redirect emails through a legitimate relay host. Many ISPs provide an address to a SMTP server which can be used for this purpose. If you are using postfix, please read the postfix documentation for instructions about how to implement the `relayhost` directive.
+ - Configure phpplatesender to send emails directly to a legitimate SMTP server. Please read [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to configure a SMTP server in phpPlateSender.
+- The email address of the sender is considered suspicious. This address does not have to be a valid address associated to a mailbox, however this address may be rejected for different reasons:
+ - The SMTP server may verify that the domain name is a Fully Qualified Domain Name (FQDN). The default email address is set from the domain name of the machine where phpPlateSender is installed, this name is not necessarily a FQDN. Please read [configuration section](https://github.com/manupap1/phpPlateSender#configuration) for instructions about how to change the `$sender_email` option.
+ - The mailing system of the recipient has blacklisted the email address of the sender or the domaine name of this address.
 - The email address of the recipient does not exists (but I think you have checked it first!).
