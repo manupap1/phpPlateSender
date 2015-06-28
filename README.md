@@ -82,7 +82,7 @@ The package openalpr-daemon must be installed. Please read the documentation abo
 Don't forget to configure openalpr-daemmon and restart it (the configuration file is `/etc/openalpr/alprd.conf`). The following options must be changed or verified:
 - `country` set according your location,
 - `stream` set to the url of the MJPEG stream on your camera,
-- `store_plates` set to 1.
+- `store_plates` set to 1 if you want to attach images of detected plates to emails.
 
 The following instructions assume that your current shell directory is phpPlateSender.
 
