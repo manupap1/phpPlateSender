@@ -77,6 +77,7 @@ There is some helper files for SysVinit and Systemd init systems (please read th
 #### Debian / Ubuntu distribution
 
 Prerequisite:
+
 The package openalpr-daemon must be installed. Please read the documentation about how to install the packages on https://github.com/openalpr/openalpr.
 Don't forget to configure openalpr-daemmon and restart it (the configuration file is `/etc/openalpr/alprd.conf`). The following options must be changed or verified:
 - `country` set according your location,
