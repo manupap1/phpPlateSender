@@ -89,6 +89,7 @@ The following instructions assume that your current shell directory is phpPlateS
 Construction of phpPlateSender package:
 ```bash
 cp -R distros/debian ./
+sudo apt-get install pkg-php-tools
 dpkg-buildpackage -rfakeroot -us -uc
 ```
 Installation of phpPlateSender package:
