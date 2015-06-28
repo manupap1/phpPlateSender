@@ -121,7 +121,7 @@ The configuration file of phpPlateSender is `/etc/phpplatesender/config.php`.
 Most of the default values can be kept to start a new instance of phpPlateSender but email notification requires to configure at least the following options:
 - `$enable_notifications` must be switched to `true`,
 - `$sender_email` must be set to an address with a Fully Qualified Domain Name (FQDN),
-- `$recipient_email` must be set to a valid email address.`
+- `$recipient_email` must be set to a valid email address.
 
 Optionally, you can configure the options relatives to SMTP in order to send email throught a SMTP server instead of the default sendmail method:
 - `$use_sendmail` switched to false,
