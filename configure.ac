@@ -33,15 +33,6 @@ if test "x$HAVE_PHPCLI_BINARY" == "xno"; then
 fi
 AC_SUBST(PHPCLI_BINARY_PATH)
 
-if test "x$($PHPCLI_BINARY_PATH -m | grep memcached)" == "x"; then
-    AC_MSG_ERROR([memcached extension is missing on php, please install it])
-fi
-
-AC_CHECK_PROG([ALPRD],[alprd],[yes],[no])
-if test "x$ALPRD" == "xno"; then
-    AC_MSG_ERROR([openalpr-daemon (alprd) is missing on php, please install it])
-fi
-
 # Options
 
 PHPMAILER_EXT_DIR=
