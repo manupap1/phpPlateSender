@@ -111,7 +111,7 @@
 //$smtp_port = 587;
 
 // Email address of the sender
-//$sender_email = "openalpr@@FQDN@";
+//$sender_email = "openalpr@@DOMAIN@";
 
 // First name and last name of the sender
 //$sender_name = "OpenALPR";

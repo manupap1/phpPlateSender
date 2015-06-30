@@ -186,7 +186,7 @@ if (!isset($smtp_port)) {
 }
 
 // Email address of the sender
-define("DEFAULT_SENDER_EMAIL", "openalpr@@FQDN@");
+define("DEFAULT_SENDER_EMAIL", "openalpr@@DOMAIN@");
 if (!isset($sender_email)) {
     $sender_email = DEFAULT_SENDER_EMAIL;
 }

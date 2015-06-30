@@ -120,7 +120,7 @@ The configuration file of phpPlateSender is `/etc/phpplatesender/config.php`.
 
 Most of the default values can be kept to start a new instance of phpPlateSender but email notification requires to configure at least the following options:
 - `$enable_notifications` must be switched to `true`,
-- `$sender_email` must be set to an address with a Fully Qualified Domain Name (FQDN),
+- `$sender_email` must be set to an address with a valid domain name,
 - `$recipient_email` must be set to a valid email address.
 
 Optionally, you can configure the options relatives to SMTP in order to send email throught a SMTP server instead of the default sendmail method:
@@ -156,6 +156,6 @@ If emails are not received or are classified among the spam they are several pos
  - Configure a directive on your local SMTP server to redirect emails through a legitimate relay host. Many ISPs provide an address to a SMTP server which can be used for this purpose. If you are using postfix, please read the postfix documentation for instructions about how to implement the `relayhost` directive.
  - Configure phpplatesender to send emails directly to a legitimate SMTP server. Please read [configuration section](https://github.com/manupap1/phpPlateSender#basic-configuration) for instructions about how to configure a SMTP server in phpPlateSender.
 - The email address of the sender is considered suspicious. This address does not have to be a valid address associated to a mailbox, however this address may be rejected for different reasons:
- - The SMTP server may verify that the domain name is a Fully Qualified Domain Name (FQDN). The default email address is set from the domain name of the machine where phpPlateSender is installed, this name is not necessarily a FQDN. Please read [configuration section](https://github.com/manupap1/phpPlateSender#basic-configuration) for instructions about how to change the `$sender_email` option.
+ - The SMTP server may verify that the domain name is valid. The default email address is set from the domain name of the machine where phpPlateSender is installed. Please read [configuration section](https://github.com/manupap1/phpPlateSender#basic-configuration) for instructions about how to change the `$sender_email` option.
  - The mailing system of the recipient has blacklisted the email address of the sender or the domaine name of this address. Please read [configuration section](https://github.com/manupap1/phpPlateSender#basic-configuration) for instructions about how to change the `$sender_email` option.
 - The email address of the recipient does not exists (but I think you have checked it first!).

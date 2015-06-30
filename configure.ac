@@ -12,13 +12,13 @@ AC_PATH_PROG([HOSTNAME_BINARY_PATH],[hostname],[no])
 if test "x$HOSTNAME_BINARY_PATH" == "xno"; then
     AC_MSG_ERROR([hostname binary is missing, please install it])
 else
-    FQDN=$($HOSTNAME_BINARY_PATH --fqdn)
+    DOMAIN=$($HOSTNAME_BINARY_PATH --domain)
     if test $? != 0; then
-        AC_MSG_WARN([Failed to retrieve the fully qualified name of the machine.
+        AC_MSG_WARN([Failed to retrieve the domain name of the machine.
                     Using mydomain.com as fallback method.])
-        FQDN="mydomain.com"
+        DOMAIN="mydomain.com"
     fi
-    AC_SUBST(FQDN)
+    AC_SUBST(DOMAIN)
 fi
 
 AC_PATH_PROG([CURL_BINARY_PATH],[curl],[no])
