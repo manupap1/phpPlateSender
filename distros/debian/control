@@ -11,6 +11,7 @@ Package: phpplatesender
 Architecture: all
 Depends: ${misc:Depends}, php5-cli, php5-memcached, libphp-phpmailer,
  openalpr-daemon, memcached
+Suggests: postfix | sendmail-bin | exim4-daemon-heavy | exim4-daemon-light
 Description: ${phpcomposer:description}
  phpPlateSender is a PHP script that runs in the background to watch the
  beanstalkd queue of alprd and to send notifications with the detected license

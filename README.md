@@ -45,7 +45,6 @@ Please set these options as requested by your environment. Main usefull options 
 - `--with-logdir` - Path to directory where phpPlateSender will write the log files. If not set, the default value is `/var/log/phpplatesender`.
 - `--with-confdir` - Path to directory where phpPlateSender will load the configuration file. If not set, the default value is `/etc/phpplatesender`.
 - `--with-alprd-confdir` - Path to directory where phpPlateSender will look for the configuration file of openalpr-daemon (alprd). If not set, the default value is `/etc/openalpr`.
-- `--disable-sendmail` - Do not use sendmail binary to send emails. If set, configure will not look for sendmail binary. This option is usefull if you plan to the use direct SMTP access method to send emails.
 
 Example of configuration for installation in `/usr/share/phpplatesender` with local versions of phpmailer and pheanstalk (all other options leaved to default value):
 ```bash
@@ -129,6 +128,8 @@ Optionally, you can configure the options relatives to SMTP in order to send ema
 - `$smtp_hosts` set to the address of the SMTP server,
 - `$smtp_port` set to the port of the SMTP server (required option if the port of the SMTP server is not standard),
 - `$smtp_auth`, `$smtp_username`, `$smtp_password`, `$smtp_sec_proto` set if required by the SMTP server.
+
+If you choose to keep the default method to send emails, the file `/usr/sbin/sendmail` must be present on your machine. It is usually provided by Mail Transport Agent (MTA) like `postfix`, `sendmail` or `exim`.
 
 For the meaning of other options, please read the comments in the configuration file.
 

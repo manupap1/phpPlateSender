@@ -50,6 +50,7 @@ $SLANG = array(
     "ScriptMustBeRanByGroup"        => "Script must be ran by group",
     "ScriptMustBeRanByUser"         => "Script must be ran by user",
     "SendEmailWithPlates"           => "Send an email with detected plate(s)",
+    "SendmailFileIsMissing"         => "File '/usr/sbin/sendmail' is missing",
     "StartingProgram"               => "Starting program",
     "StopSignalReceived"            => "Stop signal received",
     "TerminatingProgram"            => "Terminating program",

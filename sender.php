@@ -49,6 +49,11 @@ if (!is_bool($use_sendmail)) {
     write_log("'$use_sendmail' " . translate("isNotAValidValueFor") .
         " \$use_sendmail" . translate("commaExit"));
     exit(1);
+} elseif ($use_sendmail) {
+    if (!is_executable("/usr/sbin/sendmail")) {
+        write_log(translate("SendmailFileIsMissing") . translate("commaExit"));
+        exit(1);
+    }
 } elseif (!$use_sendmail) {
     require_once(__PHPMAILER_ROOT__ . "/class.smtp.php");
     if (empty($smtp_hosts)) {

@@ -152,25 +152,6 @@ if test $? != 0; then
 fi
 AC_SUBST(RUN_GROUP)
 
-USE_SENDMAIL=yes
-AC_ARG_ENABLE([sendmail],
-    [  --enable-sendmail=<yes|no>    Enable or disable the use of sendmail to
-                                     send notification emails, default enabled],
-    [USE_SENDMAIL=$enable_sendmail],
-    [AC_MSG_WARN([You can call configure with the --enable-sendmail=<yes|no>
-    or --disable-sendmail option.
-    This tells configure whether to look for sendmail binary.
-    e.g. --enable-sendmail=yes or --disable-sendmail])]
-)
-if test "x$USE_SENDMAIL" == "xyes"; then
-    # Can not use AC_CHECK_PROG because /usr/sbin path may not be available for
-    # current user
-    SENDMAIL_BINARY_PATH=$(ls /usr/sbin/sendmail > /dev/null 2>&1)
-    if test $? != 0; then
-        AC_MSG_ERROR([sendmail is missing, please install it])
-    fi
-fi
-
 DATA_DIR="${prefix}/share/phpplatesender"
 AC_SUBST(DATA_DIR)
 
