@@ -1,0 +1,14 @@
+#! /bin/sh
+# postinst maintainer script for phpplatesender package
+
+set -e
+
+if [ "$1" = "configure" ]; then
+
+    chown www-data:www-data /var/log/phpplatesender
+
+fi
+
+#DEBHELPER#
+
+exit 0
