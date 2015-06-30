@@ -1,5 +1,5 @@
 #! /bin/sh
-# postrm maintainer script for zoneminder-core package
+# postrm maintainer script for phpplatesender package
 
 set -e
 
